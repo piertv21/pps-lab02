@@ -90,7 +90,7 @@ object Lab2 extends App:
       case 0 => acc
       case _ => _pow(base, exponent - 1, acc * base)
     _pow(base, exponent, 1)
-  println(powerWithTailRecursion(3, 3)) // Output: 27.0
+  println(powerWithTailRecursion(3, 3)) // 27.0
 
   // Task 8
   def reverseNumber(n: Int): Int =
