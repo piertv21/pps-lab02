@@ -13,7 +13,7 @@ object Lab2 extends App:
 
   // Task 3.a
   // Lambda style
-  val firstFunction: Int => String = _ match
+  val firstFunction: Int => String =
     case n if n >= 0 => "positive"
     case n if n < 0 => "negative"
   println(firstFunction(1)) // positive
@@ -33,7 +33,7 @@ object Lab2 extends App:
   val isNotShortMethod = neg(isShort)
   println(isNotShortMethod("hello")) // true
 
-  val negLambda: (String => Boolean) => (String => Boolean) =
+  val negLambda: (String => Boolean) => String => Boolean =
     pred => s => !pred(s)
   val isNotShortLambda = negLambda(isShort)
   println(isNotShortLambda("hi")) // false
@@ -88,3 +88,22 @@ object Lab2 extends App:
       case _ => _reverseNumber(n / 10, acc * 10 + n % 10)
     _reverseNumber(n, 0)
   println(reverseNumber(12345)) // 54321
+
+  // Task 9
+  enum Expr:
+    case Literal(value: Int)
+    case Add(left: Expr, right: Expr)
+    case Multiply(left: Expr, right: Expr)
+
+  object ExprModule:
+    def evaluate(expr: Expr): Int = expr match
+      case Expr.Literal(value) => value
+      case Expr.Add(left, right) => evaluate(left) + evaluate(right)
+      case Expr.Multiply(left, right) => evaluate(left) * evaluate(right)
+    def show(expr: Expr): String = expr match
+      case Expr.Literal(value) => value.toString
+      case Expr.Add(left, right) => "(" + show(left) + " + " + show(right) + ")"
+      case Expr.Multiply(left, right) => "(" + show(left) + " * " + show(right) + ")"
+
+  // Task 10
+  // Implemented new functions and tests

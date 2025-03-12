@@ -31,3 +31,13 @@ class OptionalTest:
     val nonEmpty = Optional.Maybe(0)
     val result = Optional.map(nonEmpty, _ + 1)
     assertEquals(1, Optional.orElse(result, 1))
+
+  @Test def filterShouldReturnValueIfSatisfied(): Unit =
+    val value = Optional.Maybe(1)
+    val result = Optional.filter(value)( _ > 0)
+    assertEquals(value, result)
+
+  @Test def filterShouldReturnEmptyIfNotSatisfied(): Unit =
+    val value = Optional.Maybe(1)
+    val result = Optional.filter(value)(_ > 2)
+    assertTrue(Optional.isEmpty(result))
