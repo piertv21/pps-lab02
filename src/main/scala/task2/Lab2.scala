@@ -6,8 +6,20 @@ object Lab2 extends App:
   println("Hello Scala")
 
   // Task 2
+  def mult (x: Double, y: Double): Double = x * y
+  println(mult(3,4))
+  def curriedMult(x: Double)(y: Double): Double = x * y
+  println(curriedMult(3)(4))
+
+  def multInt(x: Int, y: Int): Int = x * y
+  println(multInt(3, 4))
+  val multiplyBy3 = curriedMult(3)
+  println(multiplyBy3)
+
   def div(x: Double, y: Double): Double = x / y
   println(div(10, 2))
+  println(div(10, 0))
+  println(div(0, 10))
   def curriedDiv(x: Double)(y: Double): Double = x / y
   println(curriedDiv(10)(2))
 
